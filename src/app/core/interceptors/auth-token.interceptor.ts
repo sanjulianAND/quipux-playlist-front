@@ -3,20 +3,14 @@ import { inject } from '@angular/core';
 import { TokenStorageService } from '../services/token-storage.service';
 
 export const authTokenInterceptor: HttpInterceptorFn = (req, next) => {
-  const tokenStorage = inject(TokenStorageService);
-  const token = tokenStorage.getAccessToken();
+  if (req.url.startsWith('/auth/login')) return next(req);
 
-  const isLoginRequest = req.url.includes('/auth/login');
+  const token = inject(TokenStorageService).getToken();
+  if (!token) return next(req);
 
-  if (!token || isLoginRequest) {
-    return next(req);
-  }
-
-  const authReq = req.clone({
-    setHeaders: {
-      Authorization: `Bearer ${token}`,
-    },
-  });
-
-  return next(authReq);
+  return next(
+    req.clone({
+      setHeaders: { Authorization: `Bearer ${token}` },
+    }),
+  );
 };

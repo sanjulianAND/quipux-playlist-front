@@ -1,3 +1,54 @@
-:host {
-  display: block;
+.card {
+  border: 1px solid #e6e6e6;
+  border-radius: 12px;
+  padding: 16px;
+}
+.header {
+  display: flex;
+  align-items: start;
+  justify-content: space-between;
+  gap: 12px;
+}
+.desc {
+  color: #444;
+  margin-top: 6px;
+}
+.actions {
+  display: flex;
+  gap: 10px;
+}
+.btn {
+  padding: 8px 12px;
+  border: 1px solid #ddd;
+  background: #fff;
+  cursor: pointer;
+  border-radius: 10px;
+  text-decoration: none;
+  color: inherit;
+}
+.danger {
+  border-color: #f2c0c0;
+}
+.list {
+  list-style: none;
+  padding: 0;
+  margin: 12px 0 0;
+  display: grid;
+  gap: 10px;
+}
+.item {
+  border: 1px solid #eee;
+  border-radius: 12px;
+  padding: 12px;
+}
+.title {
+  font-weight: 700;
+}
+.meta {
+  margin-top: 6px;
+  color: #666;
+  font-size: 12px;
+}
+.error {
+  color: #b00020;
 }

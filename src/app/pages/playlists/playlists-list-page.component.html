@@ -1,4 +1,19 @@
-<header class="row">
-  <h1>Playlists</h1>
+<header class="header">
+  <h2>Playlists</h2>
   <a class="btn" routerLink="/playlists/new">Nueva</a>
 </header>
+
+<p *ngIf="loading">Cargando...</p>
+<p class="error" *ngIf="error">{{ error }}</p>
+
+<ul class="list" *ngIf="!loading && !error">
+  <li class="item" *ngFor="let p of playlists">
+    <a [routerLink]="['/playlists', p.nombre]">
+      <div class="name">{{ p.nombre }}</div>
+      <div class="desc" *ngIf="p.descripcion">{{ p.descripcion }}</div>
+      <div class="meta">{{ p.canciones.length || 0 }} canciones</div>
+    </a>
+  </li>
+</ul>
+
+<p *ngIf="!loading && !error && playlists.length === 0">Aún no hay playlists.</p>

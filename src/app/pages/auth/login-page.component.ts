@@ -1,5 +1,5 @@
-import { Component } from '@angular/core';
-import { ReactiveFormsModule, FormBuilder, Validators } from '@angular/forms';
+import { Component, inject } from '@angular/core';
+import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { NgIf } from '@angular/common';
 import { AuthService } from '../../core/services/auth.service';
@@ -11,20 +11,17 @@ import { AuthService } from '../../core/services/auth.service';
   styleUrls: ['./login-page.component.css'],
 })
 export class LoginPageComponent {
+  private readonly fb = inject(FormBuilder);
+  private readonly auth = inject(AuthService);
+  private readonly router = inject(Router);
+
   loading = false;
   error = '';
-  form;
 
-  constructor(
-    private fb: FormBuilder,
-    private auth: AuthService,
-    private router: Router,
-  ) {
-    this.form = this.fb.group({
-      username: ['', [Validators.required]],
-      password: ['', [Validators.required]],
-    });
-  }
+  form = this.fb.group({
+    username: ['', [Validators.required]],
+    password: ['', [Validators.required]],
+  });
 
   onSubmit(): void {
     this.error = '';

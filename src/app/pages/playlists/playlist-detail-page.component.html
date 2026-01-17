@@ -1,3 +1,34 @@
-<h1>Detalle</h1>
+<p *ngIf="loading">Cargando...</p>
+<p class="error" *ngIf="error">{{ error }}</p>
 
-<p><strong>Nombre:</strong> {{ name }}</p>
+<div *ngIf="!loading && playlist" class="card">
+  <header class="header">
+    <div>
+      <h2>{{ playlist.nombre }}</h2>
+      <p class="desc" *ngIf="playlist.descripcion">{{ playlist.descripcion }}</p>
+    </div>
+
+    <div class="actions">
+      <a class="btn" routerLink="/playlists/new">Nueva</a>
+      <button class="btn danger" (click)="delete()" [disabled]="deleting">
+        {{ deleting ? 'Eliminando...' : 'Eliminar' }}
+      </button>
+    </div>
+  </header>
+
+  <h3>Canciones</h3>
+
+  <ul class="list" *ngIf="playlist.canciones?.length">
+    <li class="item" *ngFor="let s of playlist.canciones">
+      <div class="title">{{ s.titulo }}</div>
+      <div class="meta">
+        <span *ngIf="s.artista">{{ s.artista }}</span>
+        <span *ngIf="s.album">· {{ s.album }}</span>
+        <span *ngIf="s.anno">· {{ s.anno }}</span>
+        <span *ngIf="s.genero">· {{ s.genero }}</span>
+      </div>
+    </li>
+  </ul>
+
+  <p *ngIf="!playlist.canciones?.length">Sin canciones.</p>
+</div>

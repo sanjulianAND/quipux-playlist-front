@@ -1,21 +1,18 @@
-<h1>Login</h1>
+<div class="wrap">
+  <h1>Login</h1>
 
-<form [formGroup]="form" (ngSubmit)="onSubmit()" class="card">
-  <label>
-    Usuario
-    <input type="text" formControlName="username" />
-  </label>
+  <form class="card" [formGroup]="form" (ngSubmit)="onSubmit()">
+    <label class="label">Usuario</label>
+    <input class="input" formControlName="username" />
 
-  <label>
-    Contraseña
-    <input type="password" formControlName="password" />
-  </label>
+    <label class="label">Contraseña</label>
+    <input class="input" type="password" formControlName="password" />
 
-  <button class="btn" type="submit" [disabled]="form.invalid || loading">
-    {{ loading ? 'Ingresando...' : 'Ingresar' }}
-  </button>
+    <button class="btn" type="submit" [disabled]="loading || form.invalid">
+      {{ loading ? 'Ingresando...' : 'Ingresar' }}
+    </button>
 
-  <p class="error" *ngIf="error">{{ error }}</p>
-
-  <p class="hint">Default backend: admin / admin</p>
-</form>
+    <p class="error" *ngIf="error">{{ error }}</p>
+    <p class="hint">Default backend: admin / admin</p>
+  </form>
+</div>
