@@ -25,3 +25,64 @@ Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To u
 ## Further help
 
 To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+
+## Frontend en Angular para:
+
+- Login (JWT)
+- Listar playlists
+- Crear playlist + canciones
+- Ver detalle + eliminar playlist
+- Ver géneros
+## Requisitos
+
+- Node.js 18+ (recomendado)
+- npm 9+
+- Angular CLI 18.x
+
+## Stack / Librerías
+- Angular 18 (standalone components + router)
+- HttpClient
+- Interceptor para Bearer token
+- Reactive Forms
+- CSS por componente
+
+## Configuración
+1) Instalar dependencias
+
+```bash
+npm install
+```
+
+2) Configurar API base URL
+En src/environments/environment.ts (o environment.development.ts si lo separaste) define:
+apiBaseUrl: "http://localhost:8080"
+Ejemplo:
+
+```ts
+export const environment = {
+apiBaseUrl: 'http://localhost:8080
+',
+};
+```
+
+El frontend hace llamadas a rutas como /auth/login, /lists, /genres, etc.
+Debes tener configurado el “proxy” o usar apiBaseUrl para que apunte al backend.
+
+3) Levantar el proyecto
+
+```bash
+npm start
+```
+
+Abrir:
+http://localhost:4200/login
+
+#### Credenciales
+admin / admin
+
+#### Flujo
+
+- Login guarda token en localStorage
+- authGuard protege rutas privadas
+- Interceptor agrega Authorization: Bearer <token> (excepto en /auth/login)
+- Botón “Salir” borra token y redirige a /login
