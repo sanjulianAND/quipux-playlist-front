@@ -1,18 +1,23 @@
 import { Injectable } from '@angular/core';
 
-const KEY = 'access_token';
+const ACCESS_TOKEN_KEY = 'access_token';
 
 @Injectable({ providedIn: 'root' })
 export class TokenStorageService {
-  getToken(): string | null {
-    return localStorage.getItem(KEY);
+  getAccessToken(): string | null {
+    return localStorage.getItem(ACCESS_TOKEN_KEY);
   }
 
-  setToken(token: string) {
-    localStorage.setItem(KEY, token);
+  setAccessToken(token: string): void {
+    localStorage.setItem(ACCESS_TOKEN_KEY, token);
   }
 
-  clear() {
-    localStorage.removeItem(KEY);
+  clear(): void {
+    localStorage.removeItem(ACCESS_TOKEN_KEY);
+  }
+
+  isAuthenticated(): boolean {
+    const token = this.getAccessToken();
+    return !!token && token.trim().length > 0;
   }
 }

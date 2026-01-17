@@ -1,0 +1,21 @@
+<h1>Login</h1>
+
+<form [formGroup]="form" (ngSubmit)="onSubmit()" class="card">
+  <label>
+    Usuario
+    <input type="text" formControlName="username" />
+  </label>
+
+  <label>
+    Contraseña
+    <input type="password" formControlName="password" />
+  </label>
+
+  <button class="btn" type="submit" [disabled]="form.invalid || loading">
+    {{ loading ? 'Ingresando...' : 'Ingresar' }}
+  </button>
+
+  <p class="error" *ngIf="error">{{ error }}</p>
+
+  <p class="hint">Default backend: admin / admin</p>
+</form>

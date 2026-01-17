@@ -1,0 +1,39 @@
+.card {
+  max-width: 420px;
+  display: grid;
+  gap: 12px;
+  padding: 16px;
+  border: 1px solid #e6e6e6;
+  border-radius: 12px;
+}
+
+label {
+  display: grid;
+  gap: 6px;
+}
+
+input {
+  padding: 10px 12px;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  outline: none;
+}
+
+.btn {
+  padding: 10px 12px;
+  border: 1px solid #ddd;
+  background: #fff;
+  cursor: pointer;
+  border-radius: 10px;
+}
+
+.error {
+  margin: 0;
+  color: #b00020;
+}
+
+.hint {
+  margin: 0;
+  color: #666;
+  font-size: 12px;
+}

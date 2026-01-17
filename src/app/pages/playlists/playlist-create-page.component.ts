@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 
 @Component({
   standalone: true,
-  template: `<h2>Nueva playlist</h2>`,
+  templateUrl: './playlist-create-page.component.html',
+  styleUrls: ['./playlist-create-page.component.css'],
 })
 export class PlaylistCreatePageComponent {}
