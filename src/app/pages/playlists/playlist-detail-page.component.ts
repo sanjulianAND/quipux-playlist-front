@@ -1,7 +1,15 @@
 import { Component } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   standalone: true,
-  template: `<h2>Detalle playlist</h2>`,
+  templateUrl: './playlist-detail-page.component.html',
+  styleUrls: ['./playlist-detail-page.component.css'],
 })
-export class PlaylistDetailPageComponent {}
+export class PlaylistDetailPageComponent {
+  name: string;
+
+  constructor(private route: ActivatedRoute) {
+    this.name = this.route.snapshot.paramMap.get('name') ?? '';
+  }
+}

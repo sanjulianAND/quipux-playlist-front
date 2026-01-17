@@ -1,0 +1,16 @@
+.row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.btn {
+  padding: 8px 12px;
+  border: 1px solid #ddd;
+  background: #fff;
+  cursor: pointer;
+  border-radius: 8px;
+  text-decoration: none;
+  color: inherit;
+}

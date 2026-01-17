@@ -1,7 +1,10 @@
 import { Component } from '@angular/core';
+import { RouterLink } from '@angular/router';
 
 @Component({
   standalone: true,
-  template: `<h2>Playlists</h2>`,
+  imports: [RouterLink],
+  templateUrl: './playlists-list-page.component.html',
+  styleUrls: ['./playlists-list-page.component.css'],
 })
 export class PlaylistsListPageComponent {}
