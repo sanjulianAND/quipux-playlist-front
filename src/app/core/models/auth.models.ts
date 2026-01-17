@@ -1,10 +1,10 @@
-export type LoginRequest = {
+export interface LoginRequest {
   username: string;
   password: string;
-};
+}
 
-export type LoginResponse = {
+export interface LoginResponse {
   accessToken: string;
   tokenType: string;
   expiresInMinutes: number;
-};
+}

@@ -1,3 +1,16 @@
-:host {
-  display: block;
+.list {
+  list-style: none;
+  padding: 0;
+  margin: 12px 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+.item {
+  border: 1px solid #e6e6e6;
+  padding: 8px 12px;
+  border-radius: 999px;
+}
+.error {
+  color: #b00020;
 }

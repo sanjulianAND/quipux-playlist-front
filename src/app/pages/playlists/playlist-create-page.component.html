@@ -1,1 +1,51 @@
-<h1>Nueva playlist</h1>
+<header class="header">
+  <h2>Nueva playlist</h2>
+  <button class="btn" type="button" (click)="addSong()">Agregar canción</button>
+</header>
+
+<form class="card" [formGroup]="form" (ngSubmit)="submit()">
+  <label class="label">Nombre</label>
+  <input class="input" formControlName="nombre" />
+
+  <label class="label">Descripción</label>
+  <textarea class="input" rows="3" formControlName="descripcion"></textarea>
+
+  <h3 class="sub">Canciones</h3>
+
+  <div class="songs" formArrayName="canciones">
+    <div class="song" *ngFor="let s of canciones.controls; let i = index" [formGroupName]="i">
+      <div class="row">
+        <div>
+          <label class="label">Título</label>
+          <input class="input" formControlName="titulo" />
+        </div>
+        <button class="btn danger" type="button" (click)="removeSong(i)">Quitar</button>
+      </div>
+
+      <div class="grid">
+        <div>
+          <label class="label">Artista</label>
+          <input class="input" formControlName="artista" />
+        </div>
+        <div>
+          <label class="label">Álbum</label>
+          <input class="input" formControlName="album" />
+        </div>
+        <div>
+          <label class="label">Año</label>
+          <input class="input" type="number" formControlName="anno" />
+        </div>
+        <div>
+          <label class="label">Género</label>
+          <input class="input" formControlName="genero" />
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <button class="btn primary" type="submit" [disabled]="loading || form.invalid">
+    {{ loading ? 'Guardando...' : 'Crear' }}
+  </button>
+
+  <p class="error" *ngIf="error">{{ error }}</p>
+</form>

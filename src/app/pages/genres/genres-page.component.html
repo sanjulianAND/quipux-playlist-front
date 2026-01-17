@@ -1,1 +1,10 @@
-<h1>Géneros</h1>
+<h2>Géneros</h2>
+
+<p *ngIf="loading">Cargando...</p>
+<p class="error" *ngIf="error">{{ error }}</p>
+
+<ul class="list" *ngIf="!loading && !error">
+  <li class="item" *ngFor="let g of genres">{{ g }}</li>
+</ul>
+
+<p *ngIf="!loading && !error && genres.length === 0">No hay géneros para mostrar.</p>

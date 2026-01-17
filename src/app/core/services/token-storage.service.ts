@@ -1,23 +1,24 @@
-import { Injectable } from '@angular/core';
-
-const ACCESS_TOKEN_KEY = 'access_token';
+import { Injectable, inject } from '@angular/core';
+import { isPlatformBrowser } from '@angular/common';
+import { PLATFORM_ID } from '@angular/core';
 
 @Injectable({ providedIn: 'root' })
 export class TokenStorageService {
-  getAccessToken(): string | null {
-    return localStorage.getItem(ACCESS_TOKEN_KEY);
+  private readonly platformId = inject(PLATFORM_ID);
+  private readonly key = 'playlist_token';
+
+  getToken(): string | null {
+    if (!isPlatformBrowser(this.platformId)) return null;
+    return localStorage.getItem(this.key);
   }
 
-  setAccessToken(token: string): void {
-    localStorage.setItem(ACCESS_TOKEN_KEY, token);
+  setToken(token: string): void {
+    if (!isPlatformBrowser(this.platformId)) return;
+    localStorage.setItem(this.key, token);
   }
 
   clear(): void {
-    localStorage.removeItem(ACCESS_TOKEN_KEY);
-  }
-
-  isAuthenticated(): boolean {
-    const token = this.getAccessToken();
-    return !!token && token.trim().length > 0;
+    if (!isPlatformBrowser(this.platformId)) return;
+    localStorage.removeItem(this.key);
   }
 }
